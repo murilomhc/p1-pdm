@@ -1,6 +1,6 @@
-import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import CapturaDados from './CapturaDados.jsx'
 
 function App() {
 
@@ -15,6 +15,8 @@ function App() {
         <div className="row m-2">
         </div>
       </div>
+
+      <CapturaDados />
     </div>
   )
 }
