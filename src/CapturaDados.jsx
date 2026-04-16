@@ -2,12 +2,52 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { useState } from 'react';
 
-function CapturaDados() {
+function CapturaDados(props) {
 
     const [valorInicial, setValorInicial] = useState(0);
     const [taxaJuros, setTaxaJuros] = useState(0);
     const [aporteMensal, setAporteMensal] = useState(0);
     const [periodoMeses, setPeriodoMeses] = useState(0);
+
+    const calcular = () => {
+        if (Number(valorInicial) == 0) {
+            return alert("O valor inicial deve ser maior que zero.");
+        }
+
+        let taxa = Number(taxaJuros) / 100
+        let inicial = Number(valorInicial)
+        let aporte = Number(aporteMensal)
+        let meses = Number(periodoMeses)
+
+        let totalInvestido = inicial + (aporte * meses)
+        let valorFinal =  (inicial * Math.pow((1 + taxa), meses)) * Math.pow((1 + taxa), meses)
+        let qtdAportes = meses
+        let jurosAcumulados = valorFinal - totalInvestido 
+        let rentabilidade = (jurosAcumulados / totalInvestido) * 100
+        
+        props.dadosCalculo({
+            valorFinal: valorFinal.toFixed(2),
+            totalInvestido: totalInvestido,
+            qtdAportes: qtdAportes,
+            jurosAcumulados: jurosAcumulados.toExponential(2).split('e', 1)[0],
+            rentabilidade: rentabilidade.toExponential(2).split('e', 1)[0]
+        })
+    }
+
+    const limpar = () => {
+        setValorInicial(0)
+        setTaxaJuros(0)
+        setAporteMensal(0)
+        setPeriodoMeses(0)
+        
+        props.dadosCalculo({
+            valorFinal: 0,
+            totalInvestido: 0,
+            qtdAportes: 0,
+            jurosAcumulados: 0,
+            rentabilidade: 0
+        })
+    }
 
     return (
         <div className="container d-flex flex-column gap-4 text-start justify-content-start">
@@ -43,10 +83,10 @@ function CapturaDados() {
             </div>
             <div className="row">
                 <div className="col-9">
-                    <button className="btn btn-light btn-outline-primary w-100">Calcular</button>
+                    <button className="btn btn-light btn-outline-primary w-100" onClick={() => calcular()}>Calcular</button>
                 </div>
                 <div className="col-3">
-                    <button className="btn btn-light btn-outline-secondary fw-semibold w-100">Limpar</button>
+                    <button className="btn btn-light btn-outline-secondary fw-semibold w-100" onClick={() => limpar()}>Limpar</button>
                 </div>
             </div>
         </div>
