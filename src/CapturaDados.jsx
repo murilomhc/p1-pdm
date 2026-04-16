@@ -20,16 +20,20 @@ function CapturaDados(props) {
         let meses = Number(periodoMeses)
 
         let totalInvestido = inicial + (aporte * meses)
-        let valorFinal =  (inicial * Math.pow((1 + taxa), meses)) * Math.pow((1 + taxa), meses)
+
+        let rendimentoInicial = inicial * Math.pow((1 + taxa), meses)
+        let rendimentoAportes = aporte * ((Math.pow((1 + taxa), meses) - 1) / taxa)
+
+        let valorFinal = rendimentoInicial + rendimentoAportes
         let qtdAportes = meses
-        let jurosAcumulados = valorFinal - totalInvestido 
+        let jurosAcumulados = valorFinal - totalInvestido
         let rentabilidade = (jurosAcumulados / totalInvestido) * 100
         
         props.dadosCalculo({
             valorFinal: valorFinal.toFixed(2),
             totalInvestido: totalInvestido,
             qtdAportes: qtdAportes,
-            jurosAcumulados: jurosAcumulados.toExponential(2).split('e', 1)[0],
+            jurosAcumulados: jurosAcumulados.toFixed(2),
             rentabilidade: rentabilidade.toExponential(2).split('e', 1)[0]
         })
     }
