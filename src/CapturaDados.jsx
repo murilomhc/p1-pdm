@@ -36,6 +36,15 @@ function CapturaDados(props) {
             jurosAcumulados: jurosAcumulados.toFixed(2),
             rentabilidade: rentabilidade.toExponential(2).split('e', 1)[0]
         })
+
+        props.setDadosHistorico((prev) => ([...prev, {data: pegarDataSimulacao(), valorFinal: valorFinal.toFixed(2)}]))
+    }
+
+    const pegarDataSimulacao = () => {
+        const agora = new Date()
+        const dataSimulacao = `${agora.getFullYear()}/${agora.getMonth().toString().padStart(2, '0')}/${agora.getDay().toString().padStart(2, '0')}`
+        const horarioAtual = `${agora.getHours()}:${agora.getMinutes()}`
+        return `${dataSimulacao} ${horarioAtual}`
     }
 
     const limpar = () => {
