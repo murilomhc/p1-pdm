@@ -11,7 +11,7 @@ function App() {
     const [aporteMensal, setAporteMensal] = useState(0);
     const [periodoMeses, setPeriodoMeses] = useState(0);
     const [dadosCalculo, setDadosCalculo] = useState({});
-    const [dadosHistorico, setDadosHistorico] = useState([{}]);
+    const [dadosHistorico, setDadosHistorico] = useState([]);
 
   return (
     <div className="container mt-2">
