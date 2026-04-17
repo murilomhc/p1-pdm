@@ -43,7 +43,7 @@ function CapturaDados(props) {
     const pegarDataSimulacao = () => {
         const agora = new Date()
         const dataSimulacao = `${agora.getFullYear()}/${agora.getMonth().toString().padStart(2, '0')}/${agora.getDay().toString().padStart(2, '0')}`
-        const horarioAtual = `${agora.getHours()}:${agora.getMinutes()}`
+        const horarioAtual = `${agora.getHours().toString().padStart(2,'0')}:${agora.getMinutes().toString().padStart(2,'0')}`
         return `${dataSimulacao} ${horarioAtual}`
     }
 

@@ -23,7 +23,7 @@ function Historico(props) {
                     </thead>
 
                     <tbody className="align-middle">
-                        {props.dadosHistorico.filter(registro => Number(registro.valorFinal) != 0).map((registro, i) => (
+                        {props.dadosHistorico.map((registro, i) => (
                             <tr key={i}>
                                 <td>
                                     <p className="text-start">{registro.data}</p>
