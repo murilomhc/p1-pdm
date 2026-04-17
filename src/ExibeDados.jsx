@@ -13,23 +13,23 @@ function ExibeDados(props) {
         <div className="container d-flex flex-column bg-light mt-4 p-4 pb-2">
             <div className="row">
                 <p className='mb-0'>Valor final acumulado</p>
-                <h4 className="text-success pb-3 fs-2">R${props.dadosCalculo.valorFinal}</h4>
+                <h4 className="text-success pb-3 fs-2">R$ {props.dadosCalculo.valorFinal | "0"}</h4>
                 <hr></hr>
             </div>
             <div className="row pt-2">
                 <div className="col-6">
                     <p className='mb-0 small'>Total Investido</p>
-                    <p className='fw-bold fs-5'>R${props.dadosCalculo.totalInvestido}</p>
+                    <p className='fw-bold fs-5'>R$ {props.dadosCalculo.totalInvestido | "0"}</p>
 
                     <p className='mb-0 small'>N° de Aportes</p>
-                    <p className='fw-bold fs-5'>{props.dadosCalculo.qtdAportes}</p>
+                    <p className='fw-bold fs-5'>{props.dadosCalculo.qtdAportes | "0"}</p>
                 </div>
                 <div className="col-6">
                     <p className='mb-0 small'>Juros Acumulados</p>
-                    <p className='fw-bold fs-5'>R${props.dadosCalculo.jurosAcumulados}</p>
+                    <p className='fw-bold fs-5'>R$ {props.dadosCalculo.jurosAcumulados | "0"}</p>
 
                     <p className='mb-0 small'>Rentabilidade</p>
-                    <p className='fw-bold text-success fs-5'>{props.dadosCalculo.rentabilidade}%</p>
+                    <p className='fw-bold text-success fs-5'>{props.dadosCalculo.rentabilidade | "0"}%</p>
                 </div>
             </div>
         </div>

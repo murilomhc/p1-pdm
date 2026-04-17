@@ -4,10 +4,10 @@ import { useState } from 'react';
 
 function CapturaDados(props) {
 
-    const [valorInicial, setValorInicial] = useState(0);
-    const [taxaJuros, setTaxaJuros] = useState(0);
-    const [aporteMensal, setAporteMensal] = useState(0);
-    const [periodoMeses, setPeriodoMeses] = useState(0);
+    const [valorInicial, setValorInicial] = useState('');
+    const [taxaJuros, setTaxaJuros] = useState('');
+    const [aporteMensal, setAporteMensal] = useState('');
+    const [periodoMeses, setPeriodoMeses] = useState('');
 
     const calcular = () => {
         if (Number(valorInicial) == 0) {
@@ -28,7 +28,7 @@ function CapturaDados(props) {
         let qtdAportes = meses
         let jurosAcumulados = valorFinal - totalInvestido
         let rentabilidade = (jurosAcumulados / totalInvestido) * 100
-        
+
         props.dadosCalculo({
             valorFinal: valorFinal.toFixed(2),
             totalInvestido: totalInvestido,
@@ -37,22 +37,22 @@ function CapturaDados(props) {
             rentabilidade: rentabilidade.toExponential(2).split('e', 1)[0]
         })
 
-        props.setDadosHistorico((prev) => ([...prev, {data: pegarDataSimulacao(), valorFinal: valorFinal.toFixed(2)}]))
+        props.setDadosHistorico((prev) => ([...prev, { data: pegarDataSimulacao(), valorFinal: valorFinal.toFixed(2) }]))
     }
 
     const pegarDataSimulacao = () => {
         const agora = new Date()
         const dataSimulacao = `${agora.getFullYear()}/${agora.getMonth().toString().padStart(2, '0')}/${agora.getDay().toString().padStart(2, '0')}`
-        const horarioAtual = `${agora.getHours().toString().padStart(2,'0')}:${agora.getMinutes().toString().padStart(2,'0')}`
+        const horarioAtual = `${agora.getHours().toString().padStart(2, '0')}:${agora.getMinutes().toString().padStart(2, '0')}`
         return `${dataSimulacao} ${horarioAtual}`
     }
 
     const limpar = () => {
-        setValorInicial(0)
-        setTaxaJuros(0)
-        setAporteMensal(0)
-        setPeriodoMeses(0)
-        
+        setValorInicial('')
+        setTaxaJuros('')
+        setAporteMensal('')
+        setPeriodoMeses('')
+
         props.dadosCalculo({
             valorFinal: 0,
             totalInvestido: 0,
@@ -63,42 +63,46 @@ function CapturaDados(props) {
     }
 
     return (
-        <div className="container d-flex flex-column gap-4 text-start justify-content-start">
-            <div className="row">
+        <div className="container-sm d-flex flex-column gap-4 text-start justify-content-start">
+            <div className="row-sm">
                 <h4 className="">Simulador de Investimentos</h4>
                 <p className="mt-0.5 mb-0">Descubra quanto seu dinheiro pode render com juros compostos</p>
             </div>
-            <div className="row">
-                <div className="col-6">
-                    <label className="form-label small">Valor Inicial (R$)</label>
-                    <input name="valor-inicial" className="form-control" type="number" value={valorInicial} onChange={(e) =>
-                        setValorInicial(e.target.value)
-                    }></input>
-
-                    <label className="form-label mt-2 small">Taxa de Juros (% ao mês)</label>
-                    <input name="taxa-de-juros" className="form-control" type="number" value={taxaJuros} onChange={(e) =>
-                        setTaxaJuros(e.target.value)
-                    }></input>
+            <div className="col-sm-12 d-flex flex-column gap-2">
+                <div className="row">
+                    <div className="col-sm-6">
+                        <label className="form-label small">Valor Inicial (R$)</label>
+                        <input name="valor-inicial" className="form-control" type="number" value={valorInicial} onChange={(e) =>
+                            setValorInicial(e.target.value)
+                        }></input>
+                    </div>
+                    <div className="col-sm-6">
+                        <label className="form-label small">Aporte Mensal (R$)</label>
+                        <input name="aporte-mensal" className="form-control" type="number" value={aporteMensal} onChange={(e) =>
+                            setAporteMensal(e.target.value)
+                        }></input>
+                    </div>
                 </div>
-
-                <div className="col-6">
-                    <label className="form-label small">Aporte Mensal (R$)</label>
-                    <input name="aporte-mensal" className="form-control" type="number" value={aporteMensal} onChange={(e) =>
-                        setAporteMensal(e.target.value)
-                    }></input>
-
-                    <label className="form-label mt-2 small">Período (meses)</label>
-                    <input name="periodo" className="form-control" type="number" value={periodoMeses} onChange={(e) =>
-                        setPeriodoMeses(e.target.value)
-                    }></input>
+                <div className="row">
+                    <div className="col-sm-6">
+                        <label className="form-label small">Taxa de Juros (% ao mês)</label>
+                        <input name="taxa-de-juros" className="form-control" type="number" value={taxaJuros} onChange={(e) =>
+                            setTaxaJuros(e.target.value)
+                        }></input>
+                    </div>
+                    <div className="col-sm-6">
+                        <label className="form-label small">Período (meses)</label>
+                        <input name="periodo" className="form-control" type="number" value={periodoMeses} onChange={(e) =>
+                            setPeriodoMeses(e.target.value)
+                        }></input>
+                    </div>
                 </div>
-
             </div>
-            <div className="row">
-                <div className="col-9">
+            <div className="row d-flex justify-content-around gap-2">
+                <div className="col-sm-9 p-0">
                     <button className="btn btn-light btn-outline-primary w-100" onClick={() => calcular()}>Calcular</button>
                 </div>
-                <div className="col-3">
+                <div className="col-sm-2 p-0">
                     <button className="btn btn-light btn-outline-secondary fw-semibold w-100" onClick={() => limpar()}>Limpar</button>
                 </div>
             </div>
