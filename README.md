@@ -1,9 +1,8 @@
-# p1-pdm
-Repositório para a atividade da P1 da matéria de Programação para Dispositivos Móveis da FATEC Ipiranga
-Nome e RA dos membros
+# calculadora-juros-compostos-react
+Repositório de uma calculadora de juros compostos, com responsividade para dispositivos móveis, que fizemos inteiramente em react, feito usando bootstrap para os estilos, react props e variáveis de estado (useState). 
 
 ### Nome dos Integrantes
-- Eduardo Vieira Santos | RA: 2040482413004
-- Mateus Balduino da Silva | RA: 2040482413026
-- Miguel Henrique Gonsaga dos Santos | RA: 2040482413009
-- Murilo Henrique Marques Carvalho | RA: 2040482413021
+- Eduardo Vieira Santos
+- Mateus Balduino da Silva
+- Miguel Henrique Gonsaga dos Santos 
+- Murilo Henrique Marques Carvalho 
